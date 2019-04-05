@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <!--<link href="{{ url_for('static', filename='css/styles.css') }}" type="text/css" rel="stylesheet">-->
+  </head>
+  <body>
+    <br><br><br><br><br><br><br>
+    <p><center><h1 style="background-color: Cyan;">Welcome to Alex's Maths World</h1></center></p>
+    <br><br><br><br>
+    <form name="questionForm" action="/submit" method="post">
+      {% for i, question_str in enumerate(question_list) %}
+        <center><h2>{{question_str}} = <input type="text" name="{{i}}"/></h2></center>
+      {% endfor %}
+      <br><br><br><br>
+      <center><input type="submit" value="Submit" /></center>
+    </form>
+  </body>
+</html>
