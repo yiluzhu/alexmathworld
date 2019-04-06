@@ -3,17 +3,24 @@ import random
 
 class Question:
     def __init__(self):
+        self.difficulty_dict = {
+            'easy': (1, 9),
+            'medium': (3, 12),
+            'hard': (5, 20),
+            'nightmare': (11, 40),
+        }
         self.questions = []
         self.answers = []
 
-    def generate_questions(self):
+    def generate_questions(self, difficulty):
         self.questions = []
         self.answers = []
+        start, end = self.difficulty_dict[difficulty]
         for i in range(5):
-            a = random.randint(1, 12)
-            b = random.randint(1, 12)
-            c = random.randint(1, 12)
-            d = random.randint(1, 12)
+            a = random.randint(start, end)
+            b = random.randint(start, end)
+            c = random.randint(start, end)
+            d = random.randint(start, end)
             op = '+' if random.choice([True, False]) else '-'
             question_str = f'{a} x {b} {op} {c} x {d}'
             answer = eval(question_str.replace('x', '*'))
