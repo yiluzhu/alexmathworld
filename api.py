@@ -11,11 +11,14 @@ def index():
     return render_template('main.html', range=range)
 
 
-@app.route('/questions', methods=['POST'])
+@app.route('/questions', methods=['GET', 'POST'])
 def show_questions():
-    difficulty = request.form.get('difficulty')
-    number = request.form.get('number')
-    question_list = qu.generate_questions(difficulty, number)
+    if request.method == 'GET':
+        question_list = qu.generate_questions()
+    else:
+        difficulty = request.form.get('difficulty')
+        number = request.form.get('number')
+        question_list = qu.generate_questions(difficulty, number)
     return render_template('question.html', question_list=question_list, enumerate=enumerate)
 
 

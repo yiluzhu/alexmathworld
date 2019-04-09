@@ -2,9 +2,9 @@
   <head>
   </head>
   <body>
-    <br>
-    <br>
-    <br>
+    <br><br><br><br><br><br><br>
+    <p><center><h1 style="background-color: Cyan;">Welcome to Alex's Maths World</h1></center></p>
+    <br><br><br>
     {% for question, submit_answer, correctness in result %}
       {% if correctness %}
         <p><center><h2 style="background-color:Lime;">{{ question }} = {{ submit_answer }} Correct</h2></center></p>
@@ -12,5 +12,14 @@
         <p><center><h2 style="background-color:Red;">{{ question }} = {{ submit_answer }} Wrong</h2></center></p>
       {% endif %}
     {% endfor %}
+    <br><br>
+    <center>
+      <form action="/questions" method="get">
+        <h2><input type="submit" value="Next" /></h2>
+      </form>
+      <form action="/" method="get">
+        <h2><input type="submit" value="Start Again" /></h2>
+      </form>
+    </center>
   </body>
 </html>

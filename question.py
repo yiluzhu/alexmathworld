@@ -11,12 +11,19 @@ class Question:
         }
         self.questions = []
         self.answers = []
+        self.difficulty = None
+        self.number = None
 
-    def generate_questions(self, difficulty, number):
+    def generate_questions(self, difficulty=None, number=None):
+        if difficulty:
+            self.difficulty = difficulty
+        if number:
+            self.number = number
+
         self.questions = []
         self.answers = []
-        start, end = self.difficulty_dict[difficulty]
-        for i in range(int(number)):
+        start, end = self.difficulty_dict[self.difficulty]
+        for i in range(int(self.number)):
             a = random.randint(start, end)
             b = random.randint(start, end)
             c = random.randint(start, end)
