@@ -2,17 +2,11 @@
   <head>
     <!--<link href="{{ url_for('static', filename='css/styles.css') }}" type="text/css" rel="stylesheet">-->
   </head>
-  <script>
-    function showDivisionSymbol() {
-      var symbol = document.getElementByName("questionForm").innerHTML;
-      var res = symbol.replace("/", "&#247;");
-      document.getElementByName("questionForm").innerHTML = res;
-    }
-  </script>
-  <body onload="showDivisionSymbol">
+  <body>
     <br><br><br><br><br><br><br>
     <p><center><h1 style="background-color: Cyan;">Welcome to Alex's Maths World</h1></center></p>
-    <br><br><br>
+    <br>
+    <h2>difficulty: {{ difficulty }}</h2>
     <form name="questionForm" action="/check" method="post">
       {% for i, question_str in enumerate(question_list) %}
         <center><h2 id="qu">{{ question_str|safe }} = <input type="text" name="{{i}}"/></h2></center>

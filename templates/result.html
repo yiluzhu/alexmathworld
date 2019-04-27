@@ -4,7 +4,8 @@
   <body>
     <br><br><br><br><br><br><br>
     <p><center><h1 style="background-color: Cyan;">Welcome to Alex's Maths World</h1></center></p>
-    <br><br><br>
+    <br>
+    <h2>difficulty: {{ difficulty }}</h2>
     {% for question, submit_answer, correctness in result %}
       {% if correctness %}
         <p><center><h2 style="background-color:Lime;">{{ question|safe }} = {{ submit_answer }} Correct</h2></center></p>

@@ -59,4 +59,4 @@ class Question:
                     correctness = False
             results.append([question, submit_answer, correctness])
         time_taken = time.time() - self.timer
-        return results, time_taken
+        return results, time_taken, self.difficulty
