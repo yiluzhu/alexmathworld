@@ -1,7 +1,5 @@
 import random
-import time
 from secrets import passcode
-import jinja2
 
 
 class Question:
@@ -12,23 +10,11 @@ class Question:
             'hard': (5, 20),
             'extreme': (11, 40),
         }
-        self.questions = []
-        self.answers = []
-        self.difficulty = None
-        self.number = None
-        self.timer = 0
 
     def generate_questions(self, difficulty=None, number=None):
-        if difficulty:
-            self.difficulty = difficulty
-        if number:
-            self.number = number
-
-        self.questions = []
-        self.answers = []
-        self.timer = time.time()
-        start, end = self.difficulty_dict[self.difficulty]
-        for i in range(int(self.number)):
+        questions = []
+        start, end = self.difficulty_dict[difficulty]
+        for i in range(number):
             a = random.randint(start, end)
             b = random.randint(start, end)
             c = random.randint(start, end)
@@ -36,27 +22,28 @@ class Question:
             op = '+' if random.choice([True, False]) else '-'
             div_str = self.create_division(c, d)
             question_str = f'{a} x {b} {op} {div_str}'
-            answer = eval(question_str.replace('x', '*').replace('&divide;', '/'))
-            self.questions.append(question_str)
-            self.answers.append(answer)
-        return self.questions
+            #answer = eval(question_str.replace('x', '*').replace('&divide;', '/'))
+            answer = eval(question_str.replace('x', '*').replace('\u00f7', '/'))
+            questions.append(question_str)
+        return questions
 
     def create_division(self, c, d):
         mul = c * d
-        return f'{mul} &divide; {c}'
+        #return f'{mul} &divide; {c}'
+        return f'{mul} \u00f7 {c}'
 
-    def check_answers(self, submitted_answers):
+    def check_answers(self, questions, submitted_answers):
         results = []
-        for answer, submit_answer, question in zip(self.answers, submitted_answers, self.questions):
+        for question, submit_answer in zip(questions, submitted_answers):
             if submit_answer == passcode:
                 correctness = True
-                submit_answer = int(answer)
             else:
                 try:
                     submit_answer = int(submit_answer)
-                    correctness = answer == submit_answer
                 except ValueError:
                     correctness = False
-            results.append([question, submit_answer, correctness])
-        time_taken = time.time() - self.timer
-        return results, time_taken, self.difficulty
+                else:
+                    correct_answer = eval(question.replace('x', '*').replace('\u00f7', '/'))
+                    correctness = correct_answer == submit_answer
+            results.append(correctness)
+        return results

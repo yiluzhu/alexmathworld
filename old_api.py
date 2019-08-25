@@ -18,7 +18,7 @@ def show_questions():
         difficulty = qu.difficulty
     else:
         difficulty = request.form.get('difficulty')
-        number = request.form.get('number')
+        number = int(request.form.get('number'))
         question_list = qu.generate_questions(difficulty, number)
     return render_template('question.html', question_list=question_list, enumerate=enumerate, difficulty=difficulty)
 
