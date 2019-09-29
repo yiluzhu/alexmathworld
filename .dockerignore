@@ -1,5 +1,6 @@
 Dockerfile
 README.md
+utils
 .gitignore
 *.pyc
 *.pyo
