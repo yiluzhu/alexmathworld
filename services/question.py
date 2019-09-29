@@ -1,5 +1,5 @@
 import random
-from secrets import passcode
+from services.secrets import passcode
 
 
 class Question:

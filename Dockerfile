@@ -10,8 +10,7 @@ COPY . ./
 # Install production dependencies.
 RUN pip install -r requirements.txt
 
-# Run the web service on container startup. Here we use the gunicorn
-# webserver, with one worker process and 8 threads.
+# Run the web service on container startup. 
 # For environments with multiple CPU cores, increase the number of workers
 # to be equal to the cores available.
-CMD exec gunicorn --workers 1 --threads 2 react_api:app
+CMD exec gunicorn --workers 1 --threads 2 main:app

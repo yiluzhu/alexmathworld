@@ -1,6 +1,6 @@
 import json
 from flask import Flask, request, Response
-from question import Question
+from services.question import Question
 from flask_cors import CORS
 
 
@@ -11,7 +11,7 @@ qu = Question()
 
 @app.route('/hello')
 def hello():
-    return 'hello Alex Maths World!'
+    return 'Hello Alex Maths World!'
 
 
 @app.route('/questions', methods=['POST'])
@@ -29,7 +29,3 @@ def check_answer():
     correct_answers, result = qu.check_answers(body.get('questions'), body.get('submittedAnswers'))
     return Response(json.dumps({'correct_answers': correct_answers, 'result': result}),
                     200, mimetype='application/json')
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
