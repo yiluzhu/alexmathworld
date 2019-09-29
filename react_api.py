@@ -9,6 +9,11 @@ CORS(app)
 qu = Question()
 
 
+@app.route('/hello')
+def hello():
+    return 'hello Alex Maths World!'
+
+
 @app.route('/questions', methods=['POST'])
 def show_questions():
     body = json.loads(request.data)
@@ -26,5 +31,5 @@ def check_answer():
                     200, mimetype='application/json')
 
 
-app.run()
-
+if __name__ == '__main__':
+    app.run(debug=True)
