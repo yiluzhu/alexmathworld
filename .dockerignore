@@ -1,8 +1,0 @@
-Dockerfile
-README.md
-utils
-.gitignore
-*.pyc
-*.pyo
-*.pyd
-__pycache__
