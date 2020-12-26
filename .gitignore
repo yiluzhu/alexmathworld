@@ -2,4 +2,5 @@
 .idea/*
 /venv37
 .chalice/deployments/
+.chalice/deployed/
 .chalice/venv/

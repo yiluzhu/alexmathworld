@@ -1,6 +1,6 @@
 import logging
 import datetime
-from db.dynamodb import create_comment_table, db
+from chalicelib.db.dynamodb import create_comment_table, db
 
 
 logger = logging.getLogger(__name__)

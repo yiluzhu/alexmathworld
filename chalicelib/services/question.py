@@ -1,5 +1,5 @@
 import random
-from services.secrets import passcode
+from chalicelib.services.secrets import passcode
 
 
 class Question:

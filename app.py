@@ -5,8 +5,8 @@ To run chalice locally: chalice local --port=5000 --no-autoreload
 import json
 from chalice import Chalice, Response
 
-from services.question import Question
-from services.comment import Comment
+from chalicelib.services.question import Question
+from chalicelib.services.comment import Comment
 
 
 app = Chalice(app_name='alexworld')
