@@ -25,13 +25,12 @@ class Comment:
 
     def load_all_comments(self):
         response = self.table.scan()
-        logger.info('Total comments count:', response['Count'])
-
-        return response['Items']
+        items = response['Items']
+        logger.info('Total comments count:', len(items))
+        return sorted(items, key=lambda x: x['timestamp'], reverse=True)
 
     def delete_all_comments(self):
         self.table.delete()
-
 
 
 if __name__ == '__main__':
