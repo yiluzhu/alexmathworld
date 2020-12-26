@@ -26,7 +26,7 @@ class Comment:
     def load_all_comments(self):
         response = self.table.scan()
         items = response['Items']
-        logger.info('Total comments count:', len(items))
+        logger.info(f'Total comments count: {len(items)}')
         return sorted(items, key=lambda x: x['timestamp'], reverse=True)
 
     def delete_all_comments(self):

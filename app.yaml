@@ -1,6 +1,0 @@
-runtime: python37
-service: backend
-
-# To deploy to cloud: gcloud app deploy app.yaml
-# how to create yaml for standard environment
-# https://github.com/GoogleCloudPlatform/python-docs-samples/blob/master/appengine/standard_python37/hello_world/app.yaml
