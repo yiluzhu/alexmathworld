@@ -1,15 +1,20 @@
-import os
 import boto3
 
 
-# Get the service resource.
-if os.environ.get('ALEX_WORLD_ENV') == 'aws':
+def get_db():
     db = boto3.resource('dynamodb', region_name='eu-west-2')
-else:
-    db = boto3.resource('dynamodb', endpoint_url='http://localhost:8000')
+    # db = boto3.resource('dynamodb', endpoint_url='http://localhost:8000')
+    return db
+
+
+def get_comment_table():
+    db = get_db()
+    table = db.Table('Comments')
+    return table
 
 
 def create_comment_table():
+    db = get_db()
     try:
         table = db.create_table(
             TableName='Comments',

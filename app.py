@@ -1,5 +1,9 @@
 """
-To run chalice locally: chalice local --port=5000 --no-autoreload
+To run chalice locally:
+    chalice local --port=5000 --no-autoreload
+
+To deploy app to AWS Lambda:
+    chalice deploy
 """
 
 import json
