@@ -13,6 +13,7 @@ from chalicelib.services.question import Question
 from chalicelib.services.comment import Comment
 
 
+version = '1.0'
 app = Chalice(app_name='alexworld')
 app.api.cors = True
 
@@ -20,9 +21,9 @@ qu = Question()
 co = Comment()
 
 
-@app.route('/hello')
-def hello():
-    return 'Hello Alex Maths World!'
+@app.route('/version')
+def get_version():
+    return {'version': version}
 
 
 @app.route('/questions', methods=['POST'])
