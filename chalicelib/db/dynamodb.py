@@ -2,8 +2,11 @@ import boto3
 
 
 def get_db():
-    db = boto3.resource('dynamodb', region_name='eu-west-2')
+    # Run dynamodb locally in cmd:
+    #   cd D:\apps\dynamodb_local_latest
+    #   java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb
     # db = boto3.resource('dynamodb', endpoint_url='http://localhost:8000')
+    db = boto3.resource('dynamodb', region_name='eu-west-2')
     return db
 
 
