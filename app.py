@@ -31,15 +31,19 @@ def show_questions():
     body = app.current_request.json_body
     difficulty = body.get('difficulty')
     number = int(body.get('number'))
-    question_list = qu.generate_questions(difficulty, number)
-    return Response(json.dumps(question_list), headers={'Content-Type': 'application/json'}, status_code=200)
+    question_list, answer_list = qu.generate_questions(difficulty, number)
+    body = {
+        'questions': question_list,
+        'correct_answers': answer_list,
+    }
+    return Response(json.dumps(body), headers={'Content-Type': 'application/json'}, status_code=200)
 
 
 @app.route('/result', methods=['POST'])
 def check_answer():
     body = app.current_request.json_body
-    correct_answers, result = qu.check_answers(body.get('questions'), body.get('submittedAnswers'))
-    return Response(json.dumps({'correct_answers': correct_answers, 'result': result}),
+    result = qu.check_answers(body.get('questions'), body.get('submittedAnswers'))
+    return Response(json.dumps(result),
                     headers={'Content-Type': 'application/json'}, status_code=200)
 
 

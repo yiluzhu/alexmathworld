@@ -13,6 +13,7 @@ class Question:
 
     def generate_questions(self, difficulty, number):
         questions = []
+        answers = []
         start, end = self.difficulty_dict[difficulty]
         for i in range(number):
             a = random.randint(start, end)
@@ -21,9 +22,13 @@ class Question:
             d = random.randint(start, end)
             op = '+' if random.choice([True, False]) else '-'
             div_str = self.create_division(c, d)
+
             question_str = f'{a} x {b} {op} {div_str}'
             questions.append(question_str)
-        return questions
+            answer = eval(question_str.replace('x', '*').replace('\u00f7', '/'))
+            answers.append(answer)
+
+        return questions, answers
 
     def create_division(self, c, d):
         mul = c * d
@@ -31,7 +36,6 @@ class Question:
 
     def check_answers(self, questions, submitted_answers):
         results = []
-        correct_answers = []
         for question, submit_answer in zip(questions, submitted_answers):
             correct_answer = eval(question.replace('x', '*').replace('\u00f7', '/'))
             if submit_answer == passcode:
@@ -44,5 +48,4 @@ class Question:
                 else:
                     correctness = correct_answer == submit_answer
             results.append(correctness)
-            correct_answers.append(correct_answer)
-        return correct_answers, results
+        return results
